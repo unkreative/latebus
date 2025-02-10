@@ -1,0 +1,30 @@
+L'Administration des transports publics vous offre l’accès à son OpenAPI des départs en temps réel.
+
+Définition du schéma de l'API (XSD)
+
+Veuillez contacter opendata-api@atp.etat.lu pour obtenir votre clé personnelle.
+
+I) Arrêts des transports publics (location.nearbystops)
+A) Vous devez indiquer les coordonnées géographiques x, y (en système WGS84):
+
+originCoordLat=
+originCoordLong=
+
+B) Selon vos besoins vous pouvez préciser:
+
+maxNo= un nombre max. d'arrêts retournés
+r= un rayon autour des coordonnées (en mètres)
+
+Exemple requête
+
+https://cdt.hafas.de/opendata/apiserver/location.nearbystops?accessId=<API-KEY>&originCoordLong=6.09528&originCoordLat=49.77723&maxNo=5000&r=100000&format=json
+(Remarque: Si vous voulez recevoir tous les arrêts existants utilisez les valeurs dans l'exemple)
+
+II) Départs en temps réel (departureBoard)
+Utilisez le résultat au-dessus. Cette liste vous indique l'identifiant de chaque arrêt. Vous avez besoin de cet identfiant pour générer les départs en temps-réel de l'arrêt souhaité.
+
+id=
+
+Exemple requête
+
+https://cdt.hafas.de/opendata/apiserver/departureBoard?accessId=<API-KEY>&lang=fr&id=200426002&format=json

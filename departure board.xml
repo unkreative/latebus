@@ -1,0 +1,144 @@
+This XML file does not appear to have any style information associated with it. The document tree is shown below.
+<application xmlns="http://wadl.dev.java.net/2009/02" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://wadl.dev.java.net/2009/02 wadl.xsd">
+<resources base="https://cdt.hafas.de/opendata/apiserver/">
+<resource path="departureBoard">
+<method name="GET">
+<request>
+<param name="accessId" required="true" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Access ID for identifying the requesting client. ]]>
+</doc>
+</param>
+<param name="aid" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Access ID that overrides the security value from the configuration. ]]>
+</doc>
+</param>
+<param name="requestId" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Request ID for identifying the request. ]]>
+</doc>
+</param>
+<param name="format" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Requested response format. If not set, the Accept-Header is used. If both are missing application/xml is used ]]>
+</doc>
+</param>
+<param name="jsonpCallback" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Requests the JSON response data is wrapped into a JavaScript function with that name. ]]>
+</doc>
+</param>
+<param default="de" name="lang" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ The language of the journey planer. ]]>
+</doc>
+</param>
+<param name="id" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Specifies the station/stop ID for which the departures shall be retrieved. Required if extId is not present. String not longer than 512. ]]>
+</doc>
+</param>
+<param name="extId" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Deprecated. Please use `id` as it supports external IDs. Specifies the external station/stop ID for which the departures shall be retrieved. Required if id is not present. String not longer than 512. ]]>
+</doc>
+</param>
+<param name="direction" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ If only vehicles departing or arriving from a certain direction shall be returned, specify the direction by giving the station/stop ID of the last stop on the journey. String not longer than 512. ]]>
+</doc>
+</param>
+<param name="date" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Sets the start date for which the departures shall be retrieved. Represented in the format YYYY-MM-DD. ]]>
+</doc>
+</param>
+<param name="time" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Sets the start time for which the departures shall be retrieved. Represented in the format hh:mm[:ss] in 24h nomenclature. Seconds will be ignored for requests. ]]>
+</doc>
+</param>
+<param name="dur" required="false" style="query" type="xsd:int">
+<doc>
+<![CDATA[ Range: 0-1439 ]]>
+</doc>
+</param>
+<param default="60" name="duration" required="false" style="query" type="xsd:int">
+<doc>
+<![CDATA[ Set the interval size in minutes. Range: 0-1439 ]]>
+</doc>
+</param>
+<param default="-1" name="maxJourneys" required="false" style="query" type="xsd:int">
+<doc>
+<![CDATA[ Maximum number of journeys to be returned. If no value is defined or -1, all departing/arriving services within the duration sized period are returned. Minimum of -1. ]]>
+</doc>
+</param>
+<param name="products" required="false" style="query" type="xsd:int">
+<doc>
+<![CDATA[ Decimal value defining the product classes to be included in the search. It represents a bitmask combining bit number of a product as defined in the HAFAS raw data. Values are retrievable by <<service_datainfo,Data Information service>>. Minimum of 0. ]]>
+</doc>
+</param>
+<param name="operators" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Only journeys provided by the given operators are part of the result. To filter multiple operators, separate the codes by comma. If the operator should not be part of the journeys, negate it by putting ! in front of it. String not longer than 1024. ]]>
+</doc>
+</param>
+<param name="categories" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Only journeys provided by the given categories are part of the result. To filter multiple categories, separate the codes by comma. If the category should not be part of the journeys, negate it by putting ! in front of it. String not longer than 1024. ]]>
+</doc>
+</param>
+<param name="lines" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Only journeys running the given line are part of the result. To filter multiple lines, separate the codes by comma. If the line should not be part of the be trip, negate it by putting ! in front of it. String not longer than 1024. ]]>
+</doc>
+</param>
+<param name="attributes" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Filter boards by one or more attribute codes of a journey. Multiple attribute codes are separated by comma. If the attribute should not be part of the result, negate it by putting ! in front of it. String not longer than 1024. ]]>
+</doc>
+</param>
+<param name="platforms" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Filter boards by platform. Multiple platforms are separated by comma. String not longer than 1024. ]]>
+</doc>
+</param>
+<param default="false" name="passlist" required="false" style="query" type="xsd:int">
+<doc>
+<![CDATA[ Include a list of all passed waystops? ]]>
+</doc>
+</param>
+<param name="passlistMaxStops" required="false" style="query" type="xsd:int">
+<doc>
+<![CDATA[ Maximum number of stops including requested stop and last stop. Minimum of 0. ]]>
+</doc>
+</param>
+<param name="minDur" required="false" style="query" type="xsd:int">
+<doc>
+<![CDATA[ Minimum duration a journey has left to be returned. Minimum of 0. ]]>
+</doc>
+</param>
+<param default="false" name="baim" required="false" style="query" type="xsd:int">
+<doc>
+<![CDATA[ Enables/disables BAIM information. ]]>
+</doc>
+</param>
+<param default="SERVER_DEFAULT" name="rtMode" required="false" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Set the realtime mode to be used. ]]>
+</doc>
+</param>
+<param default="DEP" name="type" required="true" style="query" type="xsd:string">
+<doc>
+<![CDATA[ Set the station departure board type to be used. DEP: Departure board as configured in HAFAS DEP_EQUIVS: Departure board with all journeys at any masts and equivalent stops DEP_MAST: Departure board at mast DEP_STATION: Departure board with all journeys at any masts of the requested station ]]>
+</doc>
+</param>
+</request>
+<response>
+<representation xmlns:proxy="http://hacon.de/hafas/proxy/hafas-proxy" element="proxy:DepartureBoard"/>
+</response>
+</method>
+</resource>
+</resources>
+</application>
